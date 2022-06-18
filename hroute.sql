@@ -1,0 +1,233 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 16-12-2021 a las 16:30:06
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.4.9
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `hroute`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `lugares`
+--
+
+CREATE TABLE `lugares` (
+  `ID` int(11) NOT NULL,
+  `LUGAR` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `lugares`
+--
+
+INSERT INTO `lugares` (`ID`, `LUGAR`) VALUES
+(1, 'Urgencias'),
+(2, 'Estación de Enfermería Cuarto Piso'),
+(3, 'Estación de Enfermería Tercer Piso'),
+(4, 'Estación de Enfermería Quinto Piso'),
+(5, 'Estación de Enfermería Unidad de Pacientes Críticos'),
+(6, 'Laboratorio'),
+(7, 'Rayos'),
+(8, 'Scaner'),
+(9, 'Estacionamiento'),
+(10, 'Pabellón'),
+(11, 'Recuperación');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_traslados`
+--
+
+CREATE TABLE `tipo_traslados` (
+  `ID` int(11) NOT NULL,
+  `TIPO_TRASLADO` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tipo_traslados`
+--
+
+INSERT INTO `tipo_traslados` (`ID`, `TIPO_TRASLADO`) VALUES
+(1, 'Traslado de Exámenes'),
+(2, 'Traslado de Medicamentos'),
+(3, 'Traslado de Medicamentos Express'),
+(4, 'Traslado de Paciente en Cama'),
+(5, 'Traslado de Paciente en Cama COVID-19'),
+(6, 'Traslado de Paciente en Silla'),
+(7, 'Traslado de Documentos'),
+(8, 'Traslado de Paciente en Camilla');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_usuario`
+--
+
+CREATE TABLE `tipo_usuario` (
+  `ID` int(11) NOT NULL,
+  `TIPO` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tipo_usuario`
+--
+
+INSERT INTO `tipo_usuario` (`ID`, `TIPO`) VALUES
+(1, 'ADMIN'),
+(2, 'TRABAJADOR');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `traslados`
+--
+
+CREATE TABLE `traslados` (
+  `ID` int(11) NOT NULL,
+  `ORIGEN` int(11) NOT NULL,
+  `DESTINO` int(11) NOT NULL,
+  `TIPO_TRASLADO` int(11) NOT NULL,
+  `FECHA` datetime NOT NULL DEFAULT current_timestamp(),
+  `NOMBRE_TRABAJADOR` int(11) NOT NULL,
+  `NOMBRE_PERSONAL` varchar(30) NOT NULL,
+  `NOMBRE_PACIENTE` varchar(30) DEFAULT NULL,
+  `REALIZADA` bit(1) NOT NULL DEFAULT b'0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `ID` int(11) NOT NULL,
+  `USUARIO` varchar(20) NOT NULL,
+  `CONTRASENA` varchar(30) NOT NULL,
+  `NOMBRE` varchar(50) NOT NULL,
+  `TIPO_USUARIO` int(11) NOT NULL,
+  `CONECTADO` bit(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`ID`, `USUARIO`, `CONTRASENA`, `NOMBRE`, `TIPO_USUARIO`, `CONECTADO`) VALUES
+(1, 'sebpiz', 'sebpiz', 'Sebastian Pizarro', 1, b'1'),
+(2, 'benalv', 'benalv', 'Benjamin Alvarez', 2, b'1'),
+(3, 'alfleo', 'alfleo', 'Alfredo Leonelli', 2, b'1');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `lugares`
+--
+ALTER TABLE `lugares`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `tipo_traslados`
+--
+ALTER TABLE `tipo_traslados`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `tipo_usuario`
+--
+ALTER TABLE `tipo_usuario`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `traslados`
+--
+ALTER TABLE `traslados`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_Origen` (`ORIGEN`),
+  ADD KEY `FK_Destino` (`DESTINO`),
+  ADD KEY `FK_TipoTraslado` (`TIPO_TRASLADO`),
+  ADD KEY `FK_NombreTrabajador` (`NOMBRE_TRABAJADOR`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_TipoUsuario` (`TIPO_USUARIO`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `lugares`
+--
+ALTER TABLE `lugares`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_traslados`
+--
+ALTER TABLE `tipo_traslados`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_usuario`
+--
+ALTER TABLE `tipo_usuario`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `traslados`
+--
+ALTER TABLE `traslados`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `traslados`
+--
+ALTER TABLE `traslados`
+  ADD CONSTRAINT `FK_Destino` FOREIGN KEY (`DESTINO`) REFERENCES `lugares` (`ID`),
+  ADD CONSTRAINT `FK_NombreTrabajador` FOREIGN KEY (`NOMBRE_TRABAJADOR`) REFERENCES `usuarios` (`ID`),
+  ADD CONSTRAINT `FK_Origen` FOREIGN KEY (`ORIGEN`) REFERENCES `lugares` (`ID`),
+  ADD CONSTRAINT `FK_TipoTraslado` FOREIGN KEY (`TIPO_TRASLADO`) REFERENCES `tipo_traslados` (`ID`);
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `FK_TipoUsuario` FOREIGN KEY (`TIPO_USUARIO`) REFERENCES `tipo_usuario` (`ID`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
