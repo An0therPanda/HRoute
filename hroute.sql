@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-12-2021 a las 16:30:06
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.4.9
+-- Tiempo de generación: 18-06-2022 a las 23:04:04
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -52,6 +52,26 @@ INSERT INTO `lugares` (`ID`, `LUGAR`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `nivel_prioridad`
+--
+
+CREATE TABLE `nivel_prioridad` (
+  `ID` int(11) NOT NULL,
+  `NIVEL` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `nivel_prioridad`
+--
+
+INSERT INTO `nivel_prioridad` (`ID`, `NIVEL`) VALUES
+(1, 'Alto'),
+(2, 'Medio'),
+(3, 'Bajo');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipo_traslados`
 --
 
@@ -91,7 +111,8 @@ CREATE TABLE `tipo_usuario` (
 
 INSERT INTO `tipo_usuario` (`ID`, `TIPO`) VALUES
 (1, 'ADMIN'),
-(2, 'TRABAJADOR');
+(2, 'TRABAJADOR'),
+(3, 'PHOSPITAL');
 
 -- --------------------------------------------------------
 
@@ -104,8 +125,9 @@ CREATE TABLE `traslados` (
   `ORIGEN` int(11) NOT NULL,
   `DESTINO` int(11) NOT NULL,
   `TIPO_TRASLADO` int(11) NOT NULL,
+  `NIVEL_PRIORIDAD` int(11) NOT NULL,
   `FECHA` datetime NOT NULL DEFAULT current_timestamp(),
-  `NOMBRE_TRABAJADOR` int(11) NOT NULL,
+  `NOMBRE_TRABAJADOR` int(11) DEFAULT NULL,
   `NOMBRE_PERSONAL` varchar(30) NOT NULL,
   `NOMBRE_PACIENTE` varchar(30) DEFAULT NULL,
   `REALIZADA` bit(1) NOT NULL DEFAULT b'0'
@@ -146,6 +168,12 @@ ALTER TABLE `lugares`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indices de la tabla `nivel_prioridad`
+--
+ALTER TABLE `nivel_prioridad`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indices de la tabla `tipo_traslados`
 --
 ALTER TABLE `tipo_traslados`
@@ -165,7 +193,8 @@ ALTER TABLE `traslados`
   ADD KEY `FK_Origen` (`ORIGEN`),
   ADD KEY `FK_Destino` (`DESTINO`),
   ADD KEY `FK_TipoTraslado` (`TIPO_TRASLADO`),
-  ADD KEY `FK_NombreTrabajador` (`NOMBRE_TRABAJADOR`);
+  ADD KEY `FK_NombreTrabajador` (`NOMBRE_TRABAJADOR`),
+  ADD KEY `FK_NivelPrioridad` (`NIVEL_PRIORIDAD`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -194,7 +223,7 @@ ALTER TABLE `tipo_traslados`
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `traslados`
@@ -219,7 +248,8 @@ ALTER TABLE `traslados`
   ADD CONSTRAINT `FK_Destino` FOREIGN KEY (`DESTINO`) REFERENCES `lugares` (`ID`),
   ADD CONSTRAINT `FK_NombreTrabajador` FOREIGN KEY (`NOMBRE_TRABAJADOR`) REFERENCES `usuarios` (`ID`),
   ADD CONSTRAINT `FK_Origen` FOREIGN KEY (`ORIGEN`) REFERENCES `lugares` (`ID`),
-  ADD CONSTRAINT `FK_TipoTraslado` FOREIGN KEY (`TIPO_TRASLADO`) REFERENCES `tipo_traslados` (`ID`);
+  ADD CONSTRAINT `FK_TipoTraslado` FOREIGN KEY (`TIPO_TRASLADO`) REFERENCES `tipo_traslados` (`ID`),
+  ADD CONSTRAINT `traslados_ibfk_1` FOREIGN KEY (`NIVEL_PRIORIDAD`) REFERENCES `nivel_prioridad` (`ID`);
 
 --
 -- Filtros para la tabla `usuarios`
