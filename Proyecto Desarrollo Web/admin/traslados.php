@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    if(isset($_SESSION["tipo"])){
+        if($_SESSION["tipo"] == 2){
+        header('location: ../asistente/trasladospendientes.php');
+       }
+    }else{
+      header('location: ../index.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,6 +36,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="traslados.php">Ver Traslados</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../../WebServices/logout.php">Cerrar Sesión</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -49,7 +62,7 @@
             <?php
               require '../../WebServices/database.php';
           
-              $consulta = "select traslados.ID, lugares1.LUGAR as ORIGEN, lugares2.LUGAR as DESTINO, tipo_traslados.TIPO_TRASLADO as TipoTraslado, FECHA, usuarios.NOMBRE, NOMBRE_PERSONAL, NOMBRE_PACIENTE, REALIZADA
+              $consulta = "select traslados.ID, lugares1.LUGAR as ORIGEN, lugares2.LUGAR as DESTINO, tipo_traslados.TIPO_TRASLADO as TipoTraslado, usuarios.NOMBRE, NOMBRE_PERSONAL, NOMBRE_PACIENTE, REALIZADA
               from traslados
               inner join lugares AS lugares1 on traslados.ORIGEN = lugares1.ID
               inner join lugares as lugares2 on traslados.DESTINO = lugares2.ID
@@ -67,7 +80,7 @@
               if(!$ok){
                 echo "Error";
               }else{
-                $ok = mysqli_stmt_bind_result($resultado, $r_id, $r_origen, $r_destino, $r_tipotraslado, $r_fecha, $r_nombretrabajador, $r_nombrepersonal, $r_nombrepaciente, $r_realizada);
+                $ok = mysqli_stmt_bind_result($resultado, $r_id, $r_origen, $r_destino, $r_tipotraslado, $r_nombretrabajador, $r_nombrepersonal, $r_nombrepaciente, $r_realizada);
                 while ($fila = mysqli_stmt_fetch($resultado)){
                   echo "<tr><th>";
                   echo $r_id."</th><th>";
@@ -89,6 +102,8 @@
               }
               mysqli_stmt_close($resultado);
             ?>
+            <tbody>
+            </tbody>
         </table>
       </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

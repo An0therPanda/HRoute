@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    if(isset($_SESSION["tipo"])){
+        if ($_SESSION['tipo'] == 1){
+        header('location: ../admin/agregar.php');
+       }
+    }else{
+        header('location: ../index.php');
+      }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -22,6 +32,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="historialtraslados.php">Historial de Traslados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../WebServices/logout.php">Cerrar Sesión</a>
                     </li>
                 </ul>
             </div>
@@ -49,7 +62,7 @@
                     inner join lugares AS lugares1 on traslados.ORIGEN = lugares1.ID
                     inner join lugares as lugares2 on traslados.DESTINO = lugares2.ID
                     inner join tipo_traslados on traslados.TIPO_TRASLADO = tipo_traslados.ID
-                    where traslados.NOMBRE_TRABAJADOR = 2 AND traslados.realizada = 1
+                    where traslados.NOMBRE_TRABAJADOR = ".$_SESSION['id']." AND traslados.realizada = 1
                     order by traslados.ID";
 
                     $resultado = mysqli_prepare($conexion, $consulta);

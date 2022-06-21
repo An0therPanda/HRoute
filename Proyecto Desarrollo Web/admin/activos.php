@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    if(isset($_SESSION["tipo"])){
+        if($_SESSION["tipo"] == 2){
+        header('location: ../asistente/indexasist.php');
+       }
+    }else{
+      header('location: ../index.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,11 +36,14 @@
           <li class="nav-item">
             <a class="nav-link" href="traslados.php">Ver Traslados</a>
           </li>
+          <li class="nav-item">
+                <a class="nav-link" href="../../WebServices/logout.php">Cerrar Sesión</a>
+              </li>
         </ul>
       </div>
     </div>
   </nav>
-  <br />
+  <br/>
   <div class="container-fluid">
     <table class="table table-responsive table-striped">
       <thead>
@@ -43,27 +56,44 @@
       <tbody>
         <?php
           require '../../WebServices/database.php';
-          $consulta = 'select * from usuarios where TIPO_USUARIO = 2 and CONECTADO = 1';
+          $consulta = 'select id, nombre from usuarios where TIPO_USUARIO = 2 and CONECTADO = 1';
           $resultado = mysqli_prepare($conexion, $consulta);
 
           if(!$resultado){
             echo "Error";
           }
 
+          $trabajadores = [];
           $ok = mysqli_stmt_execute($resultado);
 
           if(!$ok){
             echo "Error en la consulta";
           }else{
-            $ok = mysqli_stmt_bind_result($resultado, $r_id, $r_usuario, $r_passw, $r_nombre, $r_tipousuario, $r_conectado);
-            while(mysqli_stmt_fetch($resultado)){
-              echo "<tr><th>";
-              echo "$r_id</th><th>";
-              echo "$r_nombre</th>";
-              echo "</tr>";
+            $ok = mysqli_stmt_bind_result($resultado, $r_id, $r_nombre);
+            while (mysqli_stmt_fetch($resultado)) {
+              $trabajadores[] = [
+                'id' => $r_id,
+                'nombre' => $r_nombre
+              ];
             }
           }
           mysqli_stmt_close($resultado);
+
+          for ($i=0; $i < count($trabajadores); $i++) {
+            $consulta1 = "select count(id) from traslados where nombre_trabajador = ".$trabajadores[$i]['id']." and realizada = 0";
+            $resultado1 = mysqli_prepare($conexion, $consulta1);
+            $ok1 = mysqli_stmt_execute($resultado1);
+            $ok1 = mysqli_stmt_bind_result($resultado1, $r_count);
+            while (mysqli_stmt_fetch($resultado1)) {
+              $traslados = $r_count;
+            }
+            echo "<tr>";
+            echo "<td>".$trabajadores[$i]['id']."</td>";
+            echo "<td>".$trabajadores[$i]['nombre']."</td>";
+            echo "<td>".($traslados > 0 ? 'Sí' : 'No')."</td>";
+            echo "</tr>";
+            mysqli_stmt_close($resultado1);
+          }
         ?>
       </tbody>
     </table>

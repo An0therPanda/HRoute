@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    if(isset($_SESSION["tipo"])){
+        if($_SESSION["tipo"] == 2){
+        header('location: ../asistente/trasladospendientes.php');
+       }
+    }else{
+      header('location: ../index.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -40,6 +50,7 @@
             while($fila = mysqli_stmt_fetch($resultado)){
 
     ?>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand">HRoute</a>
@@ -57,6 +68,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="traslados.php">Ver Traslados</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../../WebServices/logout.php">Cerrar Sesión</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -65,12 +79,12 @@
       <div class="container-fluid">
         <form class="form-inline" action="../../WebServices/editarTraslado.php" method="POST">
             <div class="form row">
+
                 <div class="col">
                     <label class="my-1 mr-2" >ID de Traslado: </label>
                     <?php
-                        echo "<input id='id' name='id' value='$r_id' class='form-control' readonly>";
+                        echo "<input id='id' name='id' value='".$r_id."' readonly type='text' class='form-control'>";
                     ?>
-                </select>
                 <div class="col">
                     <label class="my-1 mr-2" >Origen: </label>
                     <select id="oriTraslado" name="oriTraslado" class="form-select col" aria-label="Default select example">
@@ -79,7 +93,8 @@
                         getLugaresOptions($r_idorigen);
                     ?>
                 </select>
-                </div>                
+                </div>
+                
                 <div class="col">
                     <label class="my-1 mr-2" >Destino: </label>
                     <select id="desTraslado" name="desTraslado" class="form-select " aria-label="Default select example">
@@ -107,33 +122,40 @@
                     <select id="trabajadorTraslado" name="trabajadorTraslado" class="form-select col" aria-label="Default select example">
                     <option selected disabled>Seleccione el Personal a Cargo</option>
                     <?php
-                        getTrabajadorOptions($r_idtrabajador); 
-                        }
-                    }      
+                        getTrabajadorOptions($r_idtrabajador);  
+            }
+        }      
                     ?>
                     </select>
                 </div>
             </div>
-            <br>
+            
+                
+
+            <br>    
+
             <div class="form row">
                 <div class="col">
                     <?php
                     echo "<label class='my-1 mr-2' >Nombre Personal: </label>";
                     echo "<input id='nomPersonal' name='nomPersonal' type='text' class='form-control' value='".$r_nombrepersonal."' placeholder='".$r_nombrepersonal."'>";
-                    ?>                    
-                </div>                
+                    ?>
+                    
+                </div>
+                
                 <div class="col">
                     <?php
                     echo "<label class='my-1 mr-2' >Nombre del Paciente u Otros: </label>";
                     echo "<input id='nomPaciente' name='nomPaciente' type='text' class='form-control' value='".$r_nombrepaciente."' placeholder='".$r_nombrepaciente."'>";
-                    ?>                    
+                    ?>
+                    
                 </div>
             </div>
-            <div class="form row">
-                <div class="col">
-                    <label class='my-1 mr-2'>Estado del Traslado: </label>
-                    <select id="realizada" name="realizada" class="form-select col" aria-label="Default select example">;
-                    <?php
+            <br>
+            <div class="col">
+                <label class="my-1 mr-2" >Estado del traslado: </label>
+                <?php
+                    echo "<select id='realizada' name='realizada' class='form-select col' aria-label='Default select example'>";
                     if($r_realizada == 0){
                         echo "<option value='0' selected>Pendiente</option>";
                         echo "<option value='1'>Realizada</option>";
@@ -141,11 +163,9 @@
                         echo "<option value='1' selected>Realizada</option>";
                         echo "<option value='0'>Pendiente</option>";
                     }
-                    ?>
-                </div>
-            </div>
-            <input type="hidden" id="txtId">
-            <br>   
+                    echo "</select>";
+                ?>
+            </div> 
             <div class="col-12">
                 <button id="btnGuardar" type="submit" class="btn btn-success float-right">Modificar</button>
             </div>

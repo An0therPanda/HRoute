@@ -18,7 +18,7 @@
     if(!$resultado){
         echo "Error al insertar: ".mysqli_error($conexion);
     }else{
-        header('location: ../Proyecto Desarrollo Web/admin/agregar.php');
+        header('location: ../Proyecto Desarrollo Web/admin/traslados.php');
     }
 
     mysqli_close($conexion);

@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    if(isset($_SESSION["tipo"])){
+        if ($_SESSION['tipo'] == 1){
+        header('location: ../admin/agregar.php');
+       }
+    }else{
+        header('location: ../index.php');
+      }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,6 +36,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="historialtraslados.php">Historial de Traslados</a>
                     </li>
+                    <li class="nav-item">
+                <a class="nav-link" href="../../WebServices/logout.php">Cerrar Sesión</a>
+              </li>
                 </ul>
             </div>
         </div>
@@ -34,7 +47,7 @@
         <div class="row">
             <div class="table-responsive table-bordered movie-table">
                 <table class="table table-responsive table-striped">
-                        <thead>
+                    <thead>
                         <tr>
                             <th>ID</th>
                             <th>Origen</th>
@@ -44,16 +57,17 @@
                             <th>Tipo de Traslado</th>
                             <th>OT Realizada</th>
                         </tr>
-                  </thead>   
-                  <?php
+                    </thead> 
+                    <?php
                     require '../../WebServices/database.php';
-
-                    $consulta = "select traslados.ID, lugares1.LUGAR as ORIGEN, lugares2.LUGAR as DESTINO, tipo_traslados.TIPO_TRASLADO as TipoTraslado, NOMBRE_PERSONAL, NOMBRE_PACIENTE, REALIZADA
+            
+                    $consulta = "select traslados.ID, lugares1.LUGAR as ORIGEN, lugares2.LUGAR as DESTINO, tipo_traslados.TIPO_TRASLADO as TipoTraslado, usuarios.NOMBRE, NOMBRE_PERSONAL, NOMBRE_PACIENTE, REALIZADA
                     from traslados
                     inner join lugares AS lugares1 on traslados.ORIGEN = lugares1.ID
                     inner join lugares as lugares2 on traslados.DESTINO = lugares2.ID
                     inner join tipo_traslados on traslados.TIPO_TRASLADO = tipo_traslados.ID
-                    where traslados.NOMBRE_TRABAJADOR = 2 AND traslados.realizada = 0
+                    inner join usuarios on traslados.NOMBRE_TRABAJADOR = usuarios.ID
+                    where traslados.NOMBRE_TRABAJADOR = ".$_SESSION['id']." AND traslados.realizada = 0
                     order by traslados.ID";
 
                     $resultado = mysqli_prepare($conexion, $consulta);
@@ -62,7 +76,24 @@
                         echo "Error: ".mysqli_error($conexion);
                     }
                     $ok = mysqli_stmt_execute($resultado);
-                  ?>
+
+                    if(!$ok){
+                        echo "Error";
+                    }else{
+                        $ok = mysqli_stmt_bind_result($resultado, $r_id, $r_origen, $r_destino, $r_tipotraslado, $r_nombretrabajador, $r_nombrepersonal, $r_nombrepaciente, $r_realizada);
+                        while ($fila = mysqli_stmt_fetch($resultado)){
+                            echo "<tr><th>";
+                            echo $r_id."</th><th>";
+                            echo $r_origen."</th><th>";
+                            echo $r_destino."</th><th>";
+                            echo $r_nombrepersonal."</th><th>";
+                            echo $r_nombrepaciente."</th><th>";
+                            echo $r_tipotraslado."</th><th>";
+                            echo "<a href='../../WebServices/completarTraslado.php?id=".$r_id."'>Completar</a></th>";             
+                        }
+                    }
+                    mysqli_stmt_close($resultado);
+                ?>
                 </table>
             </div>
         </div>
