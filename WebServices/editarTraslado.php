@@ -27,7 +27,7 @@
         if(!$resultado){
             echo "Error al modificar: ".mysqli_error($conexion);
         }else{
-            header('location: ../Proyecto Desarrollo Web/admin/traslados.php');
+            header('location: ../HRoute/enfer/traslados.php');
         }
 
         $ok = mysqli_stmt_bind_param($resultado, "iiiissii", $origen, $destino, $tipo_traslado , $nombre_trabajador, $nombre_personal, $nombre_paciente, $realizada, $id);

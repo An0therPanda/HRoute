@@ -19,7 +19,7 @@
 
         if(!mysqli_stmt_fetch($resultado)){
             $_SESSION['mensaje'] = "Login Fallido, Usuario no encontrado";
-            header('location: ../Proyecto Desarrollo Web/index.php');
+            header('location: ../HRoute/index.php');
         }else{
 
             setcookie("usuario", $r_usuario, time() + (86400 * 30)); 
@@ -28,9 +28,11 @@
             $_SESSION['id'] = $r_id;
             $_SESSION['tipo'] = $r_tipo;
             if($r_tipo == 1){
-                header('location: ../Proyecto Desarrollo Web/admin/agregar.php');
+                header('location: ../HRoute/admin/crear.php');
+            }else if($r_tipo == 2){
+                header('location: ../HRoute/asistente/trasladospendientes.php');
             }else{
-                header('location: ../Proyecto Desarrollo Web/asistente/trasladospendientes.php');
+                header('location: ../HRoute/enfer/agregar.php');
             }
         }
         mysqli_stmt_close($resultado);
@@ -42,6 +44,6 @@
 
     }else{
         $_SESSION['mensaje'] = "Ingrese Sesión Primero";
-        header('location: ../Proyecto Desarrollo Web/index.php');
+        header('location: ../HRoute/index.php');
     } 
 ?>

@@ -12,14 +12,14 @@
 
         require 'database.php';
 
-        $consulta = "delete from TRASLADOS where ID = ?";
+        $consulta = "delete from usuarios where ID = ?";
 
         $resultado = mysqli_prepare($conexion, $consulta);
 
         if(!$resultado){
             echo "Error al eliminar";
         }else{
-            header('location: ../HRoute/enfer/traslados.php');
+            header('location: ../HRoute/admin/historial.php');
         }
 
         $ok = mysqli_stmt_bind_param($resultado, "i", $id);

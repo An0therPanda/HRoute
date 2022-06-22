@@ -23,6 +23,7 @@
         require '../../WebServices/select lugar.php';
         require '../../WebServices/select tipo traslado.php';
         require '../../WebServices/select trabajador.php';
+        require '../../WebServices/selectNivel.php';
     ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -84,6 +85,17 @@
                     </select>
                 </div>
                 <div class="col">
+                    <label class="my-1 mr-2">Nivel de Prioridad: </label>
+                    <select id="idPrioridad" name="idPrioridad" class="form-select col" aria-label="Default select example">
+                        <option selected disabled>Seleccione el nivel de prioridad</option>
+                        <?php
+                            getNivelOptions(0);
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="col">
                     <label class="my-1 mr-2" >Trabajador a Cargo: </label>
                     <select id="trabajadorTraslado" name="trabajadorTraslado" class="form-select col" aria-label="Default select example">
                         <option selected disabled>Seleccione el Personal a Cargo</option>
@@ -92,7 +104,6 @@
                         ?>
                     </select>
                 </div>
-            </div>
             <br>
             <div class="form row">
                 <div class="col">

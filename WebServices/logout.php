@@ -14,6 +14,6 @@
     }
     
  
-    header('location:../Proyecto Desarrollo Web/index.php');
+    header('location:../HRoute/index.php');
  
 ?>

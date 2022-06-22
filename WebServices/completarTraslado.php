@@ -12,7 +12,7 @@
     if(!$resultado){
         echo "Error al modificar: ".mysqli_error($conexion);
     }else{
-        header('location: ../Proyecto Desarrollo Web/asistente/historialtraslados.php');
+        header('location: ../HRoute/asistente/historialtraslados.php');
     }
 
     $ok = mysqli_stmt_bind_param($resultado, "i", $id);
