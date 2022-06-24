@@ -74,7 +74,7 @@
               inner join usuarios on traslados.NOMBRE_TRABAJADOR = usuarios.ID
               inner join nivel_prioridad on traslados.NIVEL_PRIORIDAD = nivel_prioridad.ID
               where REALIZADA = 0
-              order by traslados.ID";
+              order by nivel_prioridad.ID ASC";
 
               $resultado = mysqli_prepare($conexion, $consulta);
 
