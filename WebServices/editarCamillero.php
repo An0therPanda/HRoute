@@ -8,13 +8,14 @@
 <body>
     <?php
         $id = $_POST['id'];
+        $estado = $_POST['estado'];
         $contra = $_POST['contrasena'];
         $nomUsuario = $_POST['nomUsuario'];
         $nomCamillero = $_POST['nomCamillero'];
 
         require 'database.php';
 
-        $consulta = "update USUARIOS set  USUARIO = ?, CONTRASENA = ?, NOMBRE = ? where ID = ?";
+        $consulta = "update USUARIOS set  USUARIO = ?, CONTRASENA = ?, NOMBRE = ?, CONECTADO = ? where ID = ?";
 
         $resultado = mysqli_prepare($conexion, $consulta);
 
@@ -26,7 +27,7 @@
             header('location: ../HRoute/admin/activos.php');
         }
 
-        $ok = mysqli_stmt_bind_param($resultado, "sssi", $nomUsuario, $contra, $nomCamillero, $id);
+        $ok = mysqli_stmt_bind_param($resultado, "sssbi", $nomUsuario, $contra, $nomCamillero, $estado, $id);
         $ok = mysqli_stmt_execute($resultado);
 
         if(!$ok){

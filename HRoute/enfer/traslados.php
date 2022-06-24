@@ -26,20 +26,20 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="agregar.php">Agregar Traslado</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="activos.php">Ver Trabajadores</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="traslados.php">Ver Traslados</a>
-              </li>
-              <li class="nav-item">
+          <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="agregar.php">Agregar Traslado</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="activos.php">Ver Trabajadores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="traslados.php">Ver Traslados</a>
+          </li>
+          <li class="nav-item">
                 <a class="nav-link" href="../../WebServices/logout.php">Cerrar Sesión</a>
               </li>
-            </ul>
+        </ul>
           </div>
         </div>
       </nav>
@@ -52,6 +52,7 @@
                     <th>Origen</th>
                     <th>Destino</th>
                     <th>Tipo de Traslado</th>
+                    <th>Nivel de Prioridad</th>
                     <th>Nombre Personal</th>
                     <th>Nombre del Paciente y Otros</th>
                     <th>Trabajador a Cargo</th>
@@ -62,12 +63,14 @@
             <?php
               require '../../WebServices/database.php';
           
-              $consulta = "select traslados.ID, lugares1.LUGAR as ORIGEN, lugares2.LUGAR as DESTINO, tipo_traslados.TIPO_TRASLADO as TipoTraslado, usuarios.NOMBRE, NOMBRE_PERSONAL, NOMBRE_PACIENTE, REALIZADA
+              $consulta = "select traslados.ID, lugares1.LUGAR as ORIGEN, lugares2.LUGAR as DESTINO, tipo_traslados.TIPO_TRASLADO as TipoTraslado, nivel_prioridad.nivel as NIVEL_P, usuarios.NOMBRE, NOMBRE_PERSONAL, NOMBRE_PACIENTE, REALIZADA
               from traslados
               inner join lugares AS lugares1 on traslados.ORIGEN = lugares1.ID
               inner join lugares as lugares2 on traslados.DESTINO = lugares2.ID
               inner join tipo_traslados on traslados.TIPO_TRASLADO = tipo_traslados.ID
               inner join usuarios on traslados.NOMBRE_TRABAJADOR = usuarios.ID
+              inner join nivel_prioridad on traslados.NIVEL_PRIORIDAD = nivel_prioridad.ID
+              where REALIZADA = 0
               order by traslados.ID";
 
               $resultado = mysqli_prepare($conexion, $consulta);
@@ -80,13 +83,14 @@
               if(!$ok){
                 echo "Error";
               }else{
-                $ok = mysqli_stmt_bind_result($resultado, $r_id, $r_origen, $r_destino, $r_tipotraslado, $r_nombretrabajador, $r_nombrepersonal, $r_nombrepaciente, $r_realizada);
+                $ok = mysqli_stmt_bind_result($resultado, $r_id, $r_origen, $r_destino, $r_tipotraslado, $r_nivel, $r_nombretrabajador, $r_nombrepersonal, $r_nombrepaciente, $r_realizada);
                 while ($fila = mysqli_stmt_fetch($resultado)){
                   echo "<tr><th>";
                   echo $r_id."</th><th>";
                   echo $r_origen."</th><th>";
                   echo $r_destino."</th><th>";
                   echo $r_tipotraslado."</th><th>";
+                  echo $r_nivel."</th><th>";
                   echo $r_nombrepersonal."</th><th>";
                   echo $r_nombrepaciente."</th><th>";
                   echo $r_nombretrabajador."</th><th>";

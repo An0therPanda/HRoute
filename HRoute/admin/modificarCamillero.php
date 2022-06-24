@@ -27,7 +27,7 @@
         require '../../WebServices/select tipo traslado.php';
         require '../../WebServices/select trabajador.php';
         
-        $consulta = "select id, usuario, contrasena, nombre from usuarios where usuarios.id = ?";
+        $consulta = "select id, usuario, contrasena, nombre, conectado from usuarios where usuarios.id = ?";
 
         $resultado = mysqli_prepare($conexion, $consulta);
 
@@ -39,7 +39,7 @@
         if(!$ok){
             echo "Error: ".mysqli_error($conexion);
         }else{
-            $ok = mysqli_stmt_bind_result($resultado, $r_id, $r_usuario, $r_contrasena, $r_nombre);
+            $ok = mysqli_stmt_bind_result($resultado, $r_id, $r_usuario, $r_contrasena, $r_nombre, $r_estado);
             while($fila = mysqli_stmt_fetch($resultado)){
 
     ?>
@@ -81,22 +81,36 @@
                     <?php
                         echo "<input id='id' name='id' value='".$r_id."' readonly type='text' class='form-control'>";
                     ?>
-                
+                </div>
 
             </div>
-            </div>
             <br>
+            <div class="col">
+                    <label class="my-1 mr-2">Estado: </label>
+                    <select id="estado" name="estado" class="form-select col" aria-label="Default select example">
+                    <?php
+                        $estado1 = 0;
+                        $estado2 = 0;
+
+                        if ($r_estado == 0){
+                            echo "<option selected value='".$estado1."'>Desconectado</option>";
+                            echo "<option value='".$estado2."'>Conectado</option>";
+                        }else{
+                            echo "<option value=".$estado1.">Desconectado</option>";
+                            echo "<option selected value=".$estado2.">Conectado</option>";
+                        }
+                    ?>
+                    </select>
+                </div>
                     <?php
             }
         }      
                     ?>   
-
-               
-
+<br>
                 <div class="form row">
                 <div class="col">
+                <label class='my-1 mr-2' >Nombre del Paciente u Otros: </label>
                     <?php
-                    echo "<label class='my-1 mr-2' >Nombre del Paciente u Otros: </label>";
                     echo "<input id='contrasena' name='contrasena' type='text' class='form-control' value='".$r_contrasena."' placeholder='".$r_contrasena."'>";
                     ?>
                     

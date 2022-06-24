@@ -11,6 +11,7 @@
         $origen = $_POST['oriTraslado'];
         $destino = $_POST['desTraslado'];
         $tipo_traslado = $_POST['tipoTraslado'];
+        $nivel = $_POST['idPrioridad'];
         $nombre_trabajador = $_POST['trabajadorTraslado'];
         $nombre_personal = $_POST['nomPersonal'];
         $nombre_paciente = $_POST['nomPaciente'];
@@ -18,7 +19,7 @@
 
         require 'database.php';
 
-        $consulta = "update TRASLADOS set ORIGEN = ?, DESTINO = ?, TIPO_TRASLADO = ?, NOMBRE_TRABAJADOR = ?, NOMBRE_PERSONAL = ?, NOMBRE_PACIENTE = ?, REALIZADA = ? where ID = ?";
+        $consulta = "update TRASLADOS set ORIGEN = ?, DESTINO = ?, TIPO_TRASLADO = ?, NIVEL_PRIORIDAD = ?, NOMBRE_TRABAJADOR = ?, NOMBRE_PERSONAL = ?, NOMBRE_PACIENTE = ?, REALIZADA = ? where ID = ?";
 
         $resultado = mysqli_prepare($conexion, $consulta);
 
@@ -30,7 +31,7 @@
             header('location: ../HRoute/enfer/traslados.php');
         }
 
-        $ok = mysqli_stmt_bind_param($resultado, "iiiissii", $origen, $destino, $tipo_traslado , $nombre_trabajador, $nombre_personal, $nombre_paciente, $realizada, $id);
+        $ok = mysqli_stmt_bind_param($resultado, "iiiiissii", $origen, $destino, $tipo_traslado, $nivel, $nombre_trabajador, $nombre_personal, $nombre_paciente, $realizada, $id);
         $ok = mysqli_stmt_execute($resultado);
 
         if(!$ok){
