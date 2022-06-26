@@ -19,7 +19,7 @@
         if(!$resultado){
             echo "Error al eliminar";
         }else{
-            header('location: ../HRoute/enfer/traslados.php');
+            header('location: ../HRoute/admin/traslados.php');
         }
 
         $ok = mysqli_stmt_bind_param($resultado, "i", $id);
