@@ -2,13 +2,13 @@
     session_start();
     if(isset($_SESSION["tipo"])){
         if($_SESSION["tipo"] == 1){
-          header('location: ../HRoute/admin/crear.php');
+          header('location: ../admin/crear.php');
         }
         if($_SESSION["tipo"] == 2){
-          header('location: ../HRoute/asistente/trasladospendientes.php');
+          header('location: ../asistente/trasladospendientes.php');
         }
     }else{
-      header('location: ../HRoute/index.php');
+      header('location: ../index.php');
     }
 ?>
 <!DOCTYPE html>
