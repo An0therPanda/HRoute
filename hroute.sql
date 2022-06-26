@@ -154,7 +154,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`ID`, `USUARIO`, `CONTRASENA`, `NOMBRE`, `TIPO_USUARIO`, `CONECTADO`) VALUES
 (1, 'admin', 'admin', 'Administrador', 1, b'0'),
-(2, 'generico', 'generico', 'Camillero sin asignar', 2, b'1'),
+(2, 'generico', 'generico', 'Camillero sin asignar', 2, b'0'),
 (3, 'benalv', 'benalv', 'Benjamin Alvarez', 2, b'0'),
 (4, 'alfleo', 'alfleo', 'Alfredo Leonelli', 3, b'0');
 
