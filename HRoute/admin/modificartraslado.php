@@ -67,13 +67,16 @@ if (isset($_SESSION["tipo"])) {
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="agregar.php">Agregar Traslado</a>
+                                <a class="nav-link" aria-current="page" href="crear.php">Agregar Camillero</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="activos.php">Ver Trabajadores</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="traslados.php">Ver Traslados</a>
+                                <a class="nav-link" href="traslados.php">Traslados Activos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="historial.php">Historial de Traslados</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="../../WebServices/logout.php">Cerrar Sesión</a>
