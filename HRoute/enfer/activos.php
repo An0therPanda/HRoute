@@ -74,7 +74,7 @@
           }else{
             $ok = mysqli_stmt_bind_result($resultado, $r_id, $r_nombre);
             while (mysqli_stmt_fetch($resultado)) {
-              if ($r_id != 4){
+              if ($r_id != 2){
                 $trabajadores[] = [
                 'id' => $r_id,
                 'nombre' => $r_nombre

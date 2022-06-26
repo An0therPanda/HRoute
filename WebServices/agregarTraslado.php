@@ -4,7 +4,7 @@
     $destino = $_POST['desTraslado'];
     $tipo_traslado = $_POST['tipoTraslado'];
     $nivel_prioridad = $_POST['idPrioridad'];
-    $nombre_trabajador = 4;
+    $nombre_trabajador = 2;
     $nombre_personal = $_POST['nomPersonal'];
     $nombre_paciente = $_POST['nomPaciente'];
 
