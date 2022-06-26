@@ -12,7 +12,7 @@
         $destino = $_POST['desTraslado'];
         $tipo_traslado = $_POST['tipoTraslado'];
         $nivel = $_POST['idPrioridad'];
-        if ($_POST['trabajadorTraslado'] == 'NULL'){
+        if ($_POST['trabajadorTraslado'] == NULL){
             $nombre_trabajador = 2;
         }else{
             $nombre_trabajador = $_POST['trabajadorTraslado'];
