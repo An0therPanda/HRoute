@@ -98,16 +98,6 @@
                 </div>
             </div>
             <br>
-            <div class="col">
-                    <label class="my-1 mr-2" >Trabajador a Cargo: </label>
-                    <select id="trabajadorTraslado" name="trabajadorTraslado" class="form-select col" aria-label="Default select example">
-                        <option selected disabled>Seleccione el Personal a Cargo</option>
-                        <?php
-                            getTrabajadorOptions(0);
-                        ?>
-                    </select>
-                </div>
-            <br>
             <div class="form row">
                 <div class="col">
                     <label class="my-1 mr-2" >Nombre Personal: </label>
