@@ -1,18 +1,19 @@
 <?php
-    session_start();
-    if(isset($_SESSION["tipo"])){
-        if($_SESSION["tipo"] == 2){
-          header('location: ../asistente/trasladospendientes.php');
-        }
-        if($_SESSION["tipo"] == 3){
-          header('location: ../enfer/agregar.php');
-        }
-    }else{
-      header('location: ../index.php');
+session_start();
+if (isset($_SESSION["tipo"])) {
+    if ($_SESSION["tipo"] == 2) {
+        header('location: ../asistente/trasladospendientes.php');
     }
+    if ($_SESSION["tipo"] == 3) {
+        header('location: ../enfer/agregar.php');
+    }
+} else {
+    header('location: ../index.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,13 +22,14 @@
     <title>HRoute</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
+
 <body>
     <?php
-        require '../../WebServices/select lugar.php';
-        require '../../WebServices/select tipo traslado.php';
-        require '../../WebServices/select trabajador.php';
+    require '../../WebServices/select lugar.php';
+    require '../../WebServices/select tipo traslado.php';
+    require '../../WebServices/select trabajador.php';
     ?>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info text-white">
         <div class="container-fluid">
             <a class="navbar-brand">HRoute</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,15 +60,15 @@
     <div class="container-fluid">
         <form class="form-inline" action="../../WebServices/agregarCamillero.php" method="POST">
             <br>
-                <div class="col">
-                    <label class="my-1 mr-2" >Nombre de Usuario: </label>
-                    <input id="nomUsuario" name="nomUsuario" type="text" class="form-control" placeholder="">
-                </div>                
-                <div class="col">
-                    <label class="my-1 mr-2" >Nombre de Camillero: </label>
-                    <input id="nomCamillero" name="nomCamillero" type="text" class="form-control" placeholder="">
-                </div>
-            <br>   
+            <div class="col">
+                <label class="my-1 mr-2">Nombre de Usuario: </label>
+                <input id="nomUsuario" name="nomUsuario" type="text" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label class="my-1 mr-2">Nombre de Camillero: </label>
+                <input id="nomCamillero" name="nomCamillero" type="text" class="form-control" placeholder="">
+            </div>
+            <br>
             <div class="col-12">
                 <button id="btnGuardar" type="submit" class="btn btn-success float-right">Agregar Camillero</button>
             </div>
@@ -77,4 +79,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="../js/app.js"></script>
 </body>
+
 </html>

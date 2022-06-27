@@ -1,18 +1,19 @@
 <?php
-    session_start();
-    if(isset($_SESSION["tipo"])){
-        if($_SESSION["tipo"] == 1){
-          header('location: ../admin/crear.php');
-        }
-        if($_SESSION["tipo"] == 2){
-          header('location: ../asistente/trasladospendientes.php');
-        }
-    }else{
-      header('location: ../index.php');
+session_start();
+if (isset($_SESSION["tipo"])) {
+    if ($_SESSION["tipo"] == 1) {
+        header('location: ../admin/crear.php');
     }
+    if ($_SESSION["tipo"] == 2) {
+        header('location: ../asistente/trasladospendientes.php');
+    }
+} else {
+    header('location: ../index.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,14 +22,15 @@
     <title>HRoute</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
+
 <body>
     <?php
-        require '../../WebServices/select lugar.php';
-        require '../../WebServices/select tipo traslado.php';
-        require '../../WebServices/select trabajador.php';
-        require '../../WebServices/selectNivel.php';
+    require '../../WebServices/select lugar.php';
+    require '../../WebServices/select tipo traslado.php';
+    require '../../WebServices/select trabajador.php';
+    require '../../WebServices/selectNivel.php';
     ?>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info text-white">
         <div class="container-fluid">
             <a class="navbar-brand">HRoute</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,33 +59,33 @@
         <form class="form-inline" action="../../WebServices/agregarTraslado.php" method="POST">
             <div class="form row">
                 <div class="col">
-                    <label class="my-1 mr-2" >Origen: </label>
+                    <label class="my-1 mr-2">Origen: </label>
                     <select id="oriTraslado" name="oriTraslado" class="form-select col" aria-label="Default select example">
                         <option selected disabled>Seleccione un Origen</option>
                         <?php
                         getLugaresOptions(0);
                         ?>
                     </select>
-                </div>                
+                </div>
                 <div class="col">
-                    <label class="my-1 mr-2" >Destino: </label>
+                    <label class="my-1 mr-2">Destino: </label>
                     <select id="desTraslado" name="desTraslado" class="form-select " aria-label="Default select example">
                         <option selected disabled>Seleccione un Origen</option>
                         <?php
-                            getLugaresOptions(0);
+                        getLugaresOptions(0);
                         ?>
                     </select>
-                </select>
+                    </select>
                 </div>
             </div>
             <br>
             <div class="form row">
                 <div class="col">
-                    <label class="my-1 mr-2" >Tipo de Traslado: </label>
+                    <label class="my-1 mr-2">Tipo de Traslado: </label>
                     <select id="tipoTraslado" name="tipoTraslado" class="form-select col" aria-label="Default select example">
                         <option selected disabled>Seleccione un Tipo de Traslado</option>
                         <?php
-                            getTipoTrasladosOptions(0);
+                        getTipoTrasladosOptions(0);
                         ?>
                     </select>
                 </div>
@@ -92,7 +94,7 @@
                     <select id="idPrioridad" name="idPrioridad" class="form-select col" aria-label="Default select example">
                         <option selected disabled>Seleccione el nivel de prioridad</option>
                         <?php
-                            getNivelOptions(0);
+                        getNivelOptions(0);
                         ?>
                     </select>
                 </div>
@@ -100,17 +102,38 @@
             <br>
             <div class="form row">
                 <div class="col">
-                    <label class="my-1 mr-2" >Nombre Personal: </label>
+                    <label class="my-1 mr-2">Nombre Personal: </label>
                     <input id="nomPersonal" name="nomPersonal" type="text" class="form-control" placeholder="">
-                </div>                
+                </div>
                 <div class="col">
-                    <label class="my-1 mr-2" >Nombre del Paciente u Otros: </label>
+                    <label class="my-1 mr-2">Nombre del Paciente u Otros: </label>
                     <input id="nomPaciente" name="nomPaciente" type="text" class="form-control" placeholder="">
                 </div>
             </div>
-            <br>   
-            <div class="col-12">
-                <button id="btnGuardar" type="submit" class="btn btn-success float-right">Guardar</button>
+            <br>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Agregar</button>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Confirmar Acción</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            ¿Está seguro que desea agregar el traslado?
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button id="btnGuardar" type="submit" class="btn btn-success float-right">Agregar</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
@@ -119,4 +142,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="../js/app.js"></script>
 </body>
+
 </html>
