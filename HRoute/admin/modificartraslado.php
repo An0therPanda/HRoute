@@ -196,6 +196,34 @@ if (isset($_SESSION["tipo"])) {
 
 
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Modificar</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
+                    
+                    <!-- The Modal -->
+                    <div class="modal fade" id="modalEliminar">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Confirmar Acción</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    ¿Está seguro que desea eliminar el traslado?
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <?php
+                                    echo "<a href='../../WebServices/eliminarTraslado.php?id=" . $r_id . "'>Eliminar</a></th>";
+                                    ?>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- The Modal -->
                     <div class="modal fade" id="myModal">

@@ -105,7 +105,6 @@ if (isset($_SESSION["tipo"])) {
           if ($r_realizada == 0) {
             echo "Pendiente</th><th>";
             echo "<a href='modificartraslado.php?id=" . $r_id . "'>Modificar</a> ";
-            echo "<a href='../../WebServices/eliminarTraslado.php?id=" . $r_id . "'>Eliminar</a></th>";
           } else {
             echo "Realizada</th><th>";
             echo "<a href='modificarTraslado.php?id=" . $r_id . "'>Modificar</a></th>";

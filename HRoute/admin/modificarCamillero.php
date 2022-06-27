@@ -141,8 +141,59 @@ if (isset($_SESSION["tipo"])) {
 
             <br>
             <div class="col-12">
-                <button id="btnGuardar" type="submit" class="btn btn-success float-right">Modificar</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Modificar</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
             </div>
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Confirmar Acción</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            ¿Está seguro que desea modificar los datos del camillero?
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button id="btnGuardar" type="submit" class="btn btn-success">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalEliminar">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Confirmar Acción</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            ¿Está seguro que desea eliminar al camillero?
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <?php
+                            echo "<a href='../../WebServices/eliminarCamillero.php?id=" . $r_id . "'>Eliminar</a></th>";
+                            ?>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
                 </form>
             </div>
             <br>

@@ -100,7 +100,6 @@ if (isset($_SESSION["tipo"])) {
           echo "<td>" . $trabajadores[$i]['nombre'] . "</td>";
           echo "<td>" . ($traslados > 0 ? 'Sí' : 'No') . "</td>";
           echo "<th><a href='modificarCamillero.php?id=" . $trabajadores[$i]['id'] . "'>Modificar</a> </th>";
-          echo "<th><a href='../../WebServices/eliminarCamillero.php?id=" . $trabajadores[$i]['id'] . "'>Eliminar</a> </th>";
           echo "</tr>";
           mysqli_stmt_close($resultado1);
         }
