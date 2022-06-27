@@ -111,7 +111,7 @@ if (isset($_SESSION["tipo"])) {
                 </div>
             </div>
             <br>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Agregar</button>
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModal">Agregar</button>
 
             <!-- The Modal -->
             <div class="modal fade" id="myModal">
@@ -130,7 +130,7 @@ if (isset($_SESSION["tipo"])) {
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button id="btnGuardar" type="submit" class="btn btn-success float-right">Agregar</button>
+                            <button id="btnGuardar" type="submit" class="btn btn-info float-right ">Agregar</button>
                         </div>
                     </div>
                 </div>
