@@ -28,10 +28,10 @@ if (isset($_SESSION["tipo"])) {
     $id = $_GET['id'];
 
     require '../../WebServices/database.php';
-    require '../../WebServices/select lugar.php';
-    require '../../WebServices/select tipo traslado.php';
-    require '../../WebServices/select trabajador.php';
-    require '../../WebServices/selectNivel.php';
+    require '../../WebServices/selectlugar.php';
+    require '../../WebServices/selecttipotraslado.php';
+    require '../../WebServices/selecttrabajador.php';
+    require '../../WebServices/selectnivel.php';
 
 
     $consulta = "select traslados.ID, lugares1.LUGAR as ORIGEN, traslados.ORIGEN as IdOrigen, lugares2.LUGAR as DESTINO, traslados.DESTINO AS IdDestino, tipo_traslados.TIPO_TRASLADO as TipoTraslado, traslados.TIPO_TRASLADO as IdTipoTraslado, nivel_prioridad.nivel as NIVEL_P, traslados.NIVEL_PRIORIDAD as ID_NIVEL, FECHA, usuarios.NOMBRE, traslados.NOMBRE_TRABAJADOR as IdTrabajador, NOMBRE_PERSONAL, NOMBRE_PACIENTE, REALIZADA

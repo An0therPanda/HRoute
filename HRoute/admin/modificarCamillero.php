@@ -28,9 +28,7 @@ if (isset($_SESSION["tipo"])) {
     $id = $_GET['id'];
 
     require '../../WebServices/database.php';
-    require '../../WebServices/select lugar.php';
-    require '../../WebServices/select tipo traslado.php';
-    require '../../WebServices/select trabajador.php';
+    require '../../WebServices/selecttrabajador.php';
 
     $consulta = "select id, usuario, contrasena, nombre, conectado from usuarios where usuarios.id = ?";
 

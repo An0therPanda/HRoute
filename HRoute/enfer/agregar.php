@@ -25,10 +25,10 @@ if (isset($_SESSION["tipo"])) {
 
 <body>
     <?php
-    require '../../WebServices/select lugar.php';
-    require '../../WebServices/select tipo traslado.php';
-    require '../../WebServices/select trabajador.php';
-    require '../../WebServices/selectNivel.php';
+    require '../../WebServices/selectlugar.php';
+    require '../../WebServices/selecttipotraslado.php';
+    require '../../WebServices/selecttrabajador.php';
+    require '../../WebServices/selectnivel.php';
     ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-info text-white">
         <div class="container-fluid">
