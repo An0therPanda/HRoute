@@ -103,7 +103,7 @@ if (isset($_SESSION["tipo"])) {
                             <select id="oriTraslado" name="oriTraslado" class="form-select col" aria-label="Default select example">
                                 <option selected disabled>Seleccione un Origen</option>
                                 <?php
-                                getDestinoOptions($r_idorigen);
+                                getOrigenOptions($r_idorigen);
                                 ?>
                             </select>
                         </div>
@@ -197,7 +197,7 @@ if (isset($_SESSION["tipo"])) {
 
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Modificar</button>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
-                    
+
                     <!-- The Modal -->
                     <div class="modal fade" id="modalEliminar">
                         <div class="modal-dialog">

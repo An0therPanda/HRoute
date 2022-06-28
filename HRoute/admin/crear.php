@@ -25,9 +25,7 @@ if (isset($_SESSION["tipo"])) {
 
 <body>
     <?php
-    require '../../WebServices/select lugar.php';
-    require '../../WebServices/select tipo traslado.php';
-    require '../../WebServices/select trabajador.php';
+    require '../../WebServices/agregarCamillero.php';
     ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-info text-white">
         <div class="container-fluid">
@@ -58,7 +56,7 @@ if (isset($_SESSION["tipo"])) {
     </nav>
     <br>
     <div class="container-fluid">
-        <form class="form-inline" action="../../WebServices/agregarCamillero.php" method="POST">
+        <form class="form-inline" method="POST">
             <br>
             <div class="col">
                 <label class="my-1 mr-2">Nombre de Usuario: </label>
@@ -70,7 +68,7 @@ if (isset($_SESSION["tipo"])) {
             </div>
             <br>
             <div class="col-12">
-                <button id="btnGuardar" type="submit" class="btn btn-success float-right">Agregar Camillero</button>
+                <button id="btnGuardar" name="btnGuardar" type="submit" class="btn btn-success float-right">Agregar Camillero</button>
             </div>
         </form>
     </div>
