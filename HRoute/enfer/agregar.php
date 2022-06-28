@@ -63,16 +63,16 @@ if (isset($_SESSION["tipo"])) {
                     <select id="oriTraslado" name="oriTraslado" class="form-select col" aria-label="Default select example">
                         <option selected disabled>Seleccione un Origen</option>
                         <?php
-                        getLugaresOptions(0);
+                        getOrigenOptions($_SESSION['piso']);
                         ?>
                     </select>
                 </div>
                 <div class="col">
                     <label class="my-1 mr-2">Destino: </label>
                     <select id="desTraslado" name="desTraslado" class="form-select " aria-label="Default select example">
-                        <option selected disabled>Seleccione un Origen</option>
+                        <option selected disabled>Seleccione un Destino</option>
                         <?php
-                        getLugaresOptions(0);
+                        getDestinoOptions(0);
                         ?>
                     </select>
                     </select>

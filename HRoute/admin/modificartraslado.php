@@ -103,7 +103,7 @@ if (isset($_SESSION["tipo"])) {
                             <select id="oriTraslado" name="oriTraslado" class="form-select col" aria-label="Default select example">
                                 <option selected disabled>Seleccione un Origen</option>
                                 <?php
-                                getLugaresOptions($r_idorigen);
+                                getDestinoOptions($r_idorigen);
                                 ?>
                             </select>
                         </div>
@@ -113,7 +113,7 @@ if (isset($_SESSION["tipo"])) {
                             <select id="desTraslado" name="desTraslado" class="form-select " aria-label="Default select example">
                                 <option selected disabled>Seleccione un Origen</option>
                                 <?php
-                                getLugaresOptions($r_iddestino);
+                                getDestinoOptions($r_iddestino);
                                 ?>
                             </select>
                             </select>
