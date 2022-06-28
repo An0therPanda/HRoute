@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-06-2022 a las 23:04:04
+-- Tiempo de generación: 28-06-2022 a las 23:55:32
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -47,7 +47,8 @@ INSERT INTO `lugares` (`ID`, `LUGAR`) VALUES
 (8, 'Scaner'),
 (9, 'Estacionamiento'),
 (10, 'Pabellón'),
-(11, 'Recuperación');
+(11, 'Recuperación'),
+(14, 'Central');
 
 -- --------------------------------------------------------
 
@@ -145,6 +146,7 @@ CREATE TABLE `usuarios` (
   `CONTRASENA` varchar(30) NOT NULL,
   `NOMBRE` varchar(50) NOT NULL,
   `TIPO_USUARIO` int(11) NOT NULL,
+  `PISO` int(11) NOT NULL,
   `CONECTADO` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -152,12 +154,15 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`ID`, `USUARIO`, `CONTRASENA`, `NOMBRE`, `TIPO_USUARIO`, `CONECTADO`) VALUES
-(1, 'admin', 'admin', 'Administrador', 1, b'0'),
-(2, 'generico', 'generico', 'Camillero sin asignar', 2, b'0'),
-(3, 'benalv', 'benalv', 'Benjamin Alvarez', 2, b'0'),
-(4, 'alfleo', 'alfleo', 'Alfredo Leonelli', 2, b'0'),
-(5, 'enfermero', 'enfermero', 'Enfermero', 3, b'0');
+INSERT INTO `usuarios` (`ID`, `USUARIO`, `CONTRASENA`, `NOMBRE`, `TIPO_USUARIO`, `PISO`, `CONECTADO`) VALUES
+(1, 'admin', 'admin', 'Administrador', 1, 14, b'0'),
+(2, 'generico', 'generico', 'Camillero sin asignar', 2, 14, b'0'),
+(3, 'benalv', 'benalv', 'Benjamin Alvarez', 2, 14, b'0'),
+(4, 'alfleo', 'alfleo', 'Alfredo Leonelli', 2, 14, b'0'),
+(5, '3piso', '3piso', 'Enfermeria 3er Piso', 3, 3, b'0'),
+(6, 'urgencias', 'urgencias', 'Urgencias', 3, 1, b'0'),
+(7, '4piso', '4piso', 'Enfermeria 4to Piso', 3, 2, b'0'),
+(8, '5piso', '6piso', 'Enfermeria 5to Piso', 3, 4, b'0');
 
 --
 -- Índices para tablas volcadas
@@ -203,7 +208,8 @@ ALTER TABLE `traslados`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `FK_TipoUsuario` (`TIPO_USUARIO`);
+  ADD KEY `FK_TipoUsuario` (`TIPO_USUARIO`),
+  ADD KEY `FK_Piso` (`PISO`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -213,7 +219,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `lugares`
 --
 ALTER TABLE `lugares`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_traslados`
@@ -231,13 +237,13 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `traslados`
 --
 ALTER TABLE `traslados`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
@@ -257,6 +263,7 @@ ALTER TABLE `traslados`
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
+  ADD CONSTRAINT `FK_Piso` FOREIGN KEY (`PISO`) REFERENCES `lugares` (`ID`),
   ADD CONSTRAINT `FK_TipoUsuario` FOREIGN KEY (`TIPO_USUARIO`) REFERENCES `tipo_usuario` (`ID`);
 COMMIT;
 
