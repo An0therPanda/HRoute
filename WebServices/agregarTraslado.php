@@ -3,8 +3,13 @@
         agregarTraslado();
     }    
     /**
-     * agregarTraslado
+     * Función encargada de agregar traslados a la base de datos.
      *
+     * A través del formulario que se encuentra en la intefaz de enfermero/a obtenemos los datos del traslado. 
+     * Luego se conecta a la base de datos donde se intenta agregar datos a través de una consulta "insert". En
+     * caso de no poder lograr el ingreso de datos se manda un mensaje de error, en el otro caso se redirige a la
+     * intefaz de enfermero/a donde se muestran los traslados. 
+     *  
      * @return void
      */
     function agregarTraslado(){
@@ -27,7 +32,7 @@
         if(!$resultado){
             echo "Error al insertar: ".mysqli_error($conexion);
         }else{
-            header('location: ../admin/traslados.php');
+            header('location: ../enfer/traslados.php');
         }
     
         mysqli_close($conexion);
