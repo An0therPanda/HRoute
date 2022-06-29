@@ -3,12 +3,12 @@
         editarTraslado();
     }    
     /**
-     * Función encargada de editar los datos de los traslados ingresados en la base de datos.
+     * Función encargada de editar los traslados en la base de datos.
      * 
-     * A través del formulario que se rellena en la interfaz de editar traslado se obtienen los datos del mismo.
-     * Luego se realiza la conexión a la base de datos, donde se ingresa la consulta "update" utilizando los datos obtenidos desde el formulario. Una vez
-     * ingresada la consulta, se realiza la misma a la base de datos. En el caso de no poder realizar la modificación, se manda un mensaje de error.
-     * En el caso contrario, se redirige al usuario a la tabla de traslados pendientes.
+     * A través del formulario que se encuentran en la interfaz de modificarTraslado del admin se obtienen los nuevos
+     * datos del traslado. Luego se reciben a través de POST los campos necesarios para hacer la consulta en la base
+     * de datos luego de que esta se conecta. Si la consulta se ejecuta correctamente se redirige a la intefaz de admin
+     * donde se encuentra una tabla con los traslados activos.
      * 
      * @return void
      */
@@ -35,7 +35,7 @@
         if (!$resultado) {
             echo "Error al modificar: " . mysqli_error($conexion);
         } else {
-            header('location: ../HRoute/admin/traslados.php');
+            header('location: ../admin/traslados.php');
         }
 
         $ok = mysqli_stmt_bind_param($resultado, "iiiiissii", $origen, $destino, $tipo_traslado, $nivel, $nombre_trabajador, $nombre_personal, $nombre_paciente, $realizada, $id);

@@ -1,8 +1,14 @@
 <?php
     
     /**
-     * getTrabajadorOptions
+     * Función para obtenener los camilleros activos.
      *
+     * Esta función recibe la id del trabajor, esta id será la que estará seleccionada luego en el dropdown. Se hace la
+     * consulta donde se buscan todos los datos de la tabla usuarios donde el tipo de usuarios sea camillero y donde
+     * esté conectado. Luego de comprobar errores se empiezan a crear las opciones dentro del dropdown. En el caso 
+     * de que el id del trabajador recibido se igual al id del resultado se crea la opción como seleccionada y en otro
+     * caso solamente se agrega la opción del del dropdown.
+     * 
      * @param  mixed $trabajador_id
      * @return void
      */

@@ -1,7 +1,12 @@
 <?php
     
     /**
-     * getNivelOptions
+     * Función para obtener datos de niveles.
+     * 
+     * Esta función recibe la id de nivel, esta id será la que estará seleccionada luego en el dropdown. Se hace la
+     * consulta donde se buscan todos los datos de la tabla nivel_prioridad. Luego de comprobar errores se empiezan a 
+     * crear las opciones dentro del dropdown. En el caso de que el id del nivel recibido se igual al id del resultado
+     * se crea la opción como seleccionada y en otro caso solamente se agrega como opción del dropdown.
      *
      * @param  mixed $nivel_id
      * @return void
