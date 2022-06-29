@@ -3,8 +3,13 @@
         eliminarCamillero();
     }    
     /**
-     * eliminarCamillero
-     *
+     * Función encargada de eliminar un camillero existente en la base de datos.
+     * 
+     * A través de la tabla de camilleros se obtienen los datos del mismo.
+     * Luego se realiza la conexión a la base de datos, donde se ingresa la consulta "delete" utilizando los datos obtenidos desde la tabla. Una vez
+     * ingresada la consulta, se realiza la misma a la base de datos. En el caso de no poder realizar la eliminación, se manda un mensaje de error.
+     * En el caso contrario, se redirige al usuario a la tabla de los camilleros conectados.
+     * 
      * @return void
      */
     function eliminarCamillero(){

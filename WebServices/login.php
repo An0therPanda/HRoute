@@ -3,8 +3,13 @@
         login();
     }    
     /**
-     * login
-     *
+     * Función encargada de verificar los datos ingresados por el usuario para la correcta conexión al sistema.
+     * 
+     * A través del formulario de login se obtienen los datos del usuario.
+     * Luego se realiza la conexión a la base de datos, donde se ingresa la consulta "select" utilizando los datos obtenidos desde el formulario. Una vez
+     * ingresada la consulta, se realiza la misma a la base de datos. En el caso de no encontrar coincidencias, se manda un mensaje de error.
+     * En el caso contrario, se redirige al usuario a la página principal, dependiendo de su tipo de usuario.
+     * 
      * @return void
      */
     function login(){

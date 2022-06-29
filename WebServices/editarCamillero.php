@@ -4,8 +4,13 @@ if(array_key_exists('btnGuardar', $_POST)) {
 }
 
 /**
- * editarCamillero
- *
+ * Función encargada de editar los datos de los camilleros ingresados en la base de datos.
+ * 
+ * A través del formulario que se rellena en la interfaz de modificar camillero se obtienen los datos del camillero.
+ * Luego se realiza la conexión a la base de datos, donde se ingresa la consulta "update" utilizando los datos obtenidos desde el formulario. Una vez
+ * ingresada la consulta, se realiza la misma a la base de datos. En el caso de no poder realizar la modificación, se manda un mensaje de error.
+ * En el caso contrario, se redirige al usuario a la tabla de los camilleros conectados.
+ * 
  * @return void
  */
 function editarCamillero(){
