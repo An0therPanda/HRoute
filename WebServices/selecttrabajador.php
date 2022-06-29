@@ -12,7 +12,7 @@
         if(!$ok){
             echo "Error";
         }else{
-            $ok = mysqli_stmt_bind_result($resultado, $r_id, $r_usuario, $r_passw, $r_nombre, $r_tipousuario, $r_conectado);
+            $ok = mysqli_stmt_bind_result($resultado, $r_id, $r_usuario, $r_passw, $r_nombre, $r_tipousuario, $_piso, $r_conectado);
             while($fila = mysqli_stmt_fetch($resultado)){
                 if ($r_id == $trabajador_id){
                     echo "<option value='$r_id' selected>$r_nombre</option>";

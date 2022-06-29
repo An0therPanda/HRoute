@@ -29,6 +29,7 @@ if (isset($_SESSION["tipo"])) {
 
     require '../../WebServices/database.php';
     require '../../WebServices/selecttrabajador.php';
+    require '../../WebServices/eliminarCamillero.php';
 
     $consulta = "select id, usuario, contrasena, nombre, conectado from usuarios where usuarios.id = ?";
 
@@ -76,9 +77,8 @@ if (isset($_SESSION["tipo"])) {
             </nav>
             <br>
             <div class="container-fluid">
-                <form class="form-inline" action="../../WebServices/editarCamillero.php" method="POST">
+                <form class="form-inline" method="POST">
                     <div class="form row">
-
                         <div class="col">
                             <label class="my-1 mr-2">ID de Camillero: </label>
                             <?php
@@ -183,9 +183,7 @@ if (isset($_SESSION["tipo"])) {
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <?php
-                            echo "<a href='../../WebServices/eliminarCamillero.php?id=" . $r_id . "'>Eliminar</a></th>";
-                            ?>
+                            <button id="btnEliminar" name="btnEliminar" type="submit" class="btn btn-success">Eliminar</button>
                         </div>
 
                     </div>

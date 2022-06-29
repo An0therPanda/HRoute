@@ -32,6 +32,7 @@ if (isset($_SESSION["tipo"])) {
     require '../../WebServices/selecttipotraslado.php';
     require '../../WebServices/selecttrabajador.php';
     require '../../WebServices/selectnivel.php';
+    require '../../WebServices/eliminarTraslado.php';
 
 
     $consulta = "select traslados.ID, lugares1.LUGAR as ORIGEN, traslados.ORIGEN as IdOrigen, lugares2.LUGAR as DESTINO, traslados.DESTINO AS IdDestino, tipo_traslados.TIPO_TRASLADO as TipoTraslado, traslados.TIPO_TRASLADO as IdTipoTraslado, nivel_prioridad.nivel as NIVEL_P, traslados.NIVEL_PRIORIDAD as ID_NIVEL, FECHA, usuarios.NOMBRE, traslados.NOMBRE_TRABAJADOR as IdTrabajador, NOMBRE_PERSONAL, NOMBRE_PACIENTE, REALIZADA
@@ -87,7 +88,7 @@ if (isset($_SESSION["tipo"])) {
             </nav>
             <br>
             <div class="container-fluid">
-                <form class="form-inline" action="../../WebServices/editarTraslado.php" method="POST">
+                <form class="form-inline" method="POST">
                     <div class="form row">
                         <div class="col">
                             <label class="my-1 mr-2">ID de Traslado: </label>
@@ -216,9 +217,7 @@ if (isset($_SESSION["tipo"])) {
 
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <?php
-                                    echo "<a href='../../WebServices/eliminarTraslado.php?id=" . $r_id . "'>Eliminar</a></th>";
-                                    ?>
+                                    <button id="btnGuardar" name="btnEliminar" type="submit" class="btn btn-success">Confirmar</button>
                                 </div>
 
                             </div>
@@ -243,7 +242,7 @@ if (isset($_SESSION["tipo"])) {
 
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button id="btnGuardar" type="submit" class="btn btn-success">Confirmar</button>
+                                    <button id="btnGuardar" name="btnGuardar" type="submit" class="btn btn-success">Confirmar</button>
                                 </div>
 
                             </div>
