@@ -2,9 +2,11 @@
     session_start();
     if(isset($_SESSION["tipo"])){
         if ($_SESSION['tipo'] == 1){
-        header('location: admin/agregar.php');
+        header('location: admin/crear.php');
        }elseif($_SESSION["tipo"] == 2){
         header('location: asistente/trasladospendientes.php');
+       }elseif($_SESSION["tipo"] == 3){
+        header('location: enfer/agregar.php');
        }
     }
 ?>
