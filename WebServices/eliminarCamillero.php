@@ -26,6 +26,5 @@
             echo "OK";
         }
         mysqli_stmt_close($resultado);  
-    }
-    
+    }    
 ?>

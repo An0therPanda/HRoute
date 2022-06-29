@@ -166,6 +166,7 @@ if (isset($_SESSION["tipo"])) {
                 </div>
             </div>
 
+            
             <div class="modal fade" id="modalEliminar">
                 <div class="modal-dialog">
                     <div class="modal-content">
