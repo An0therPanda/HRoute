@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="estilo/estilo.css" type="text/css">
-</head>
-<body>
-    <?php
-
-        $id = $_GET['id'];
+<?php
+    if(array_key_exists('btnEliminar', $_POST)) {
+        eliminarTraslado();
+    }
+    function eliminarTraslado(){
+        $id = $_POST['id'];
 
         require 'database.php';
 
@@ -19,7 +14,7 @@
         if(!$resultado){
             echo "Error al eliminar";
         }else{
-            header('location: ../HRoute/admin/traslados.php');
+            header('location: ../admin/traslados.php');
         }
 
         $ok = mysqli_stmt_bind_param($resultado, "i", $id);
@@ -31,6 +26,5 @@
             echo "OK";
         }
         mysqli_stmt_close($resultado);
-    ?>
-</body>
-</html>
+    }
+?>
