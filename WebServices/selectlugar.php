@@ -1,4 +1,11 @@
 <?php
+    
+    /**
+     * getDestinoOptions
+     *
+     * @param  mixed $lugar_id
+     * @return void
+     */
     function getDestinoOptions($lugar_id) {
         require 'database.php';
         $consulta = "select * from LUGARES";

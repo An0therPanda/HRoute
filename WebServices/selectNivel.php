@@ -1,4 +1,11 @@
 <?php
+    
+    /**
+     * getNivelOptions
+     *
+     * @param  mixed $nivel_id
+     * @return void
+     */
     function getNivelOptions($nivel_id) {
         require 'database.php';
         $consulta = "select * from NIVEL_PRIORIDAD";

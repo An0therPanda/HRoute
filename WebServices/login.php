@@ -1,7 +1,12 @@
 <?php 
     if(isset($_POST['login'])){
         login();
-    }
+    }    
+    /**
+     * login
+     *
+     * @return void
+     */
     function login(){
         session_start();
         require('database.php');

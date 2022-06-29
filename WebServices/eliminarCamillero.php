@@ -1,7 +1,12 @@
 <?php
     if(array_key_exists('btnEliminar', $_POST)) {
         eliminarCamillero();
-    }
+    }    
+    /**
+     * eliminarCamillero
+     *
+     * @return void
+     */
     function eliminarCamillero(){
         $id = $_POST['id'];
 

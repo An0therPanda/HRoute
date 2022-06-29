@@ -30,6 +30,7 @@ if (isset($_SESSION["tipo"])) {
     require '../../WebServices/database.php';
     require '../../WebServices/selecttrabajador.php';
     require '../../WebServices/eliminarCamillero.php';
+    require '../../WebServices/editarCamillero.php';
 
     $consulta = "select id, usuario, contrasena, nombre, conectado from usuarios where usuarios.id = ?";
 
@@ -160,7 +161,7 @@ if (isset($_SESSION["tipo"])) {
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button id="btnGuardar" type="submit" class="btn btn-success">Confirmar</button>
+                            <button id="btnGuardar" name="btnGuardar" type="submit" class="btn btn-success">Confirmar</button>
                         </div>
                     </div>
                 </div>

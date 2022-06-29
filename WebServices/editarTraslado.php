@@ -1,7 +1,12 @@
 <?php
     if(array_key_exists('btnGuardar', $_POST)){
         editarTraslado();
-    }
+    }    
+    /**
+     * editarTraslado
+     *
+     * @return void
+     */
     function editarTraslado(){
         $id = $_POST['id'];
         $origen = $_POST['oriTraslado'];

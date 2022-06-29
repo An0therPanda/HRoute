@@ -1,7 +1,12 @@
 <?php
     if(array_key_exists('btnGuardar', $_POST)) {
         agregarTraslado();
-    }
+    }    
+    /**
+     * agregarTraslado
+     *
+     * @return void
+     */
     function agregarTraslado(){
         $origen = $_POST['oriTraslado'];
         $destino = $_POST['desTraslado'];

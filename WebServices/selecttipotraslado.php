@@ -1,4 +1,11 @@
 <?php
+    
+    /**
+     * getTipoTrasladosOptions
+     *
+     * @param  mixed $tipotraslado_id
+     * @return void
+     */
     function getTipoTrasladosOptions($tipotraslado_id){
         require 'database.php';
         $consulta = "select * from TIPO_TRASLADOS";

@@ -1,7 +1,12 @@
 <?php
     if(array_key_exists('btnEliminar', $_POST)) {
         eliminarTraslado();
-    }
+    }    
+    /**
+     * eliminarTraslado
+     *
+     * @return void
+     */
     function eliminarTraslado(){
         $id = $_POST['id'];
 

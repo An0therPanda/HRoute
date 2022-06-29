@@ -1,4 +1,11 @@
 <?php
+    
+    /**
+     * getTrabajadorOptions
+     *
+     * @param  mixed $trabajador_id
+     * @return void
+     */
     function getTrabajadorOptions($trabajador_id){
         require 'database.php';
         $consulta = "select * from usuarios where CONECTADO = 1 AND TIPO_USUARIO = 2";
