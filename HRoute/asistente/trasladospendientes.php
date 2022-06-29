@@ -65,6 +65,7 @@ if (isset($_SESSION["tipo"])) {
                     </thead>
                     <?php
                     require '../../WebServices/database.php';
+                    require '../../WebServices/completarTraslado.php';
 
                     $consulta = "select traslados.ID, lugares1.LUGAR as ORIGEN, lugares2.LUGAR as DESTINO, tipo_traslados.TIPO_TRASLADO as TipoTraslado, usuarios.NOMBRE, NOMBRE_PERSONAL, NOMBRE_PACIENTE, REALIZADA
                     from traslados

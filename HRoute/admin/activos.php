@@ -5,7 +5,7 @@ if (isset($_SESSION["tipo"])) {
     header('location: ../asistente/trasladospendientes.php');
   }
   if ($_SESSION["tipo"] == 3) {
-    header('location: ../enfer/agregar.php');
+    header('location: ../enfer/crear.php');
   }
 } else {
   header('location: ../index.php');

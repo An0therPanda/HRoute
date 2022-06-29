@@ -1,7 +1,15 @@
 <?php
+
 if(array_key_exists('btnGuardar', $_POST)) {
     agregarCamillero();
 }
+
+/**
+ * agregarCamillero
+ *
+ * @return void
+ */
+
 function agregarCamillero()
 {
     $nombre_usuario = $_POST['nomUsuario'];

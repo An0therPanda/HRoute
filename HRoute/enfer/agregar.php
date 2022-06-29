@@ -29,6 +29,7 @@ if (isset($_SESSION["tipo"])) {
     require '../../WebServices/selecttipotraslado.php';
     require '../../WebServices/selecttrabajador.php';
     require '../../WebServices/selectnivel.php';
+    require '../../WebServices/agregarTraslado.php';
     ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-info text-white">
         <div class="container-fluid">
@@ -56,7 +57,7 @@ if (isset($_SESSION["tipo"])) {
     </nav>
     <br>
     <div class="container-fluid">
-        <form class="form-inline" action="../../WebServices/agregarTraslado.php" method="POST">
+        <form class="form-inline" method="POST">
             <div class="form row">
                 <div class="col">
                     <label class="my-1 mr-2">Origen: </label>
@@ -130,7 +131,7 @@ if (isset($_SESSION["tipo"])) {
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button id="btnGuardar" type="submit" class="btn btn-info float-right ">Agregar</button>
+                            <button id="btnGuardar" name="btnGuardar" type="submit" class="btn btn-info float-right ">Agregar</button>
                         </div>
                     </div>
                 </div>
