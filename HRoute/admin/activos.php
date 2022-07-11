@@ -5,7 +5,7 @@ if (isset($_SESSION["tipo"])) {
     header('location: ../asistente/trasladospendientes.php');
   }
   if ($_SESSION["tipo"] == 3) {
-    header('location: ../enfer/crear.php');
+    header('location: ../enfer/agregar.php');
   }
 } else {
   header('location: ../index.php');
@@ -79,10 +79,12 @@ if (isset($_SESSION["tipo"])) {
         } else {
           $ok = mysqli_stmt_bind_result($resultado, $r_id, $r_nombre);
           while (mysqli_stmt_fetch($resultado)) {
-            $trabajadores[] = [
+            if ($r_id != 2){
+              $trabajadores[] = [
               'id' => $r_id,
               'nombre' => $r_nombre
-            ];
+              ];
+            }
           }
         }
         mysqli_stmt_close($resultado);

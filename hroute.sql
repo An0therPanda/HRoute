@@ -48,7 +48,7 @@ INSERT INTO `lugares` (`ID`, `LUGAR`) VALUES
 (9, 'Estacionamiento'),
 (10, 'Pabellón'),
 (11, 'Recuperación'),
-(14, 'Central');
+(12, 'Central');
 
 -- --------------------------------------------------------
 
@@ -155,10 +155,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`ID`, `USUARIO`, `CONTRASENA`, `NOMBRE`, `TIPO_USUARIO`, `PISO`, `CONECTADO`) VALUES
-(1, 'admin', 'admin', 'Administrador', 1, 14, b'0'),
-(2, 'generico', 'generico', 'Camillero sin asignar', 2, 14, b'0'),
-(3, 'benalv', 'benalv', 'Benjamin Alvarez', 2, 14, b'0'),
-(4, 'alfleo', 'alfleo', 'Alfredo Leonelli', 2, 14, b'0'),
+(1, 'admin', 'admin', 'Administrador', 1, 12, b'0'),
+(2, 'generico', 'generico', 'Camillero sin asignar', 2, 12, b'0'),
+(3, 'benalv', 'benalv', 'Benjamin Alvarez', 2, 12, b'0'),
+(4, 'alfleo', 'alfleo', 'Alfredo Leonelli', 2, 12, b'0'),
 (5, '3piso', '3piso', 'Enfermeria 3er Piso', 3, 3, b'0'),
 (6, 'urgencias', 'urgencias', 'Urgencias', 3, 1, b'0'),
 (7, '4piso', '4piso', 'Enfermeria 4to Piso', 3, 2, b'0'),

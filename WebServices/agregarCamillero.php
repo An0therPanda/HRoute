@@ -21,10 +21,11 @@ function agregarCamillero()
     $nombre_camillero = $_POST['nomCamillero'];
     $tipo = 2;
     $conectado = 0;
+    $piso = 12;
 
     require 'database.php';
 
-    $consulta = "insert into usuarios (USUARIO, CONTRASENA, NOMBRE, TIPO_USUARIO, CONECTADO) values ('" . $nombre_usuario . "','" . $nombre_usuario . "','" . $nombre_camillero . "','" . $tipo . "','" . $conectado . "')";
+    $consulta = "insert into usuarios (USUARIO, CONTRASENA, NOMBRE, TIPO_USUARIO, CONECTADO, PISO) values ('" . $nombre_usuario . "','" . $nombre_usuario . "','" . $nombre_camillero . "','" . $tipo . "','" . $conectado . "','" . $piso . "')";
 
     $resultado = mysqli_query($conexion, $consulta);
 

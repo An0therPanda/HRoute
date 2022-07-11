@@ -93,15 +93,15 @@ if (isset($_SESSION["tipo"])) {
                         <label class="my-1 mr-2">Estado: </label>
                         <select id="estado" name="estado" class="form-select col" aria-label="Default select example">
                             <?php
-                            $estado1 = 0;
-                            $estado2 = 0;
+                            $desconectado = 0;
+                            $conectado= 1;
 
                             if ($r_estado == 0) {
-                                echo "<option selected value='" . $estado1 . "'>Desconectado</option>";
-                                echo "<option value='" . $estado2 . "'>Conectado</option>";
+                                echo "<option selected value='" . $desconectado . "'>Desconectado</option>";
+                                echo "<option value='" . $conectado . "'>Conectado</option>";
                             } else {
-                                echo "<option value=" . $estado1 . ">Desconectado</option>";
-                                echo "<option selected value=" . $estado2 . ">Conectado</option>";
+                                echo "<option value=" . $desconectado . ">Desconectado</option>";
+                                echo "<option selected value=" . $conectado . ">Conectado</option>";
                             }
                             ?>
                         </select>
@@ -113,7 +113,7 @@ if (isset($_SESSION["tipo"])) {
             <br>
             <div class="form row">
                 <div class="col">
-                    <label class='my-1 mr-2'>Nombre del Paciente u Otros: </label>
+                    <label class='my-1 mr-2'>Nombre del Trabajador: </label>
                     <?php
                     echo "<input id='contrasena' name='contrasena' type='text' class='form-control' value='" . $r_contrasena . "' placeholder='" . $r_contrasena . "'>";
                     ?>

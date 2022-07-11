@@ -33,6 +33,7 @@ if (isset($_SESSION["tipo"])) {
     require '../../WebServices/selecttrabajador.php';
     require '../../WebServices/selectnivel.php';
     require '../../WebServices/eliminarTraslado.php';
+    require '../../WebServices/editarTraslado.php';
 
 
     $consulta = "select traslados.ID, lugares1.LUGAR as ORIGEN, traslados.ORIGEN as IdOrigen, lugares2.LUGAR as DESTINO, traslados.DESTINO AS IdDestino, tipo_traslados.TIPO_TRASLADO as TipoTraslado, traslados.TIPO_TRASLADO as IdTipoTraslado, nivel_prioridad.nivel as NIVEL_P, traslados.NIVEL_PRIORIDAD as ID_NIVEL, FECHA, usuarios.NOMBRE, traslados.NOMBRE_TRABAJADOR as IdTrabajador, NOMBRE_PERSONAL, NOMBRE_PACIENTE, REALIZADA
@@ -196,8 +197,33 @@ if (isset($_SESSION["tipo"])) {
                     <br>
 
 
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Modificar</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalModificar">Modificar</button>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
+                    
+                    <!-- The Modal -->
+                    <div class="modal fade" id="modalModificar">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Confirmar Acción</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    ¿Está seguro que desea modificar el traslado?
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button id="btnGuardar" name="btnModificar" type="submit" class="btn btn-success">Confirmar</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- The Modal -->
                     <div class="modal fade" id="modalEliminar">
@@ -223,33 +249,6 @@ if (isset($_SESSION["tipo"])) {
                             </div>
                         </div>
                     </div>
-
-                    <!-- The Modal -->
-                    <div class="modal fade" id="myModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Confirmar Acción</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    ¿Está seguro que desea modificar el traslado?
-                                </div>
-
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button id="btnGuardar" name="btnGuardar" type="submit" class="btn btn-success">Confirmar</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
                 </form>
             </div>
             <br>

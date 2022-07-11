@@ -34,7 +34,7 @@ function editarCamillero(){
         header('location: ../admin/activos.php');
     }
     
-    $ok = mysqli_stmt_bind_param($resultado, "sssbi", $nomUsuario, $contra, $nomCamillero, $estado, $id);
+    $ok = mysqli_stmt_bind_param($resultado, "sssii", $nomUsuario, $contra, $nomCamillero, $estado, $id);
     $ok = mysqli_stmt_execute($resultado);
     
     if (!$ok) {

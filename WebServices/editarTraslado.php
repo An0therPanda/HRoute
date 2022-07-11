@@ -1,5 +1,5 @@
 <?php
-    if(array_key_exists('btnGuardar', $_POST)){
+    if(array_key_exists('btnModificar', $_POST)){
         editarTraslado();
     }    
     /**
