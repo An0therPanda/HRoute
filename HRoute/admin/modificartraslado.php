@@ -20,7 +20,67 @@ if (isset($_SESSION["tipo"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/estilos/estilos.css">
     <title>HRoute</title>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script>
+          $(document).ready(function() {
+            $("#modificarTraslado").validate({
+              rules: {
+                id: {
+                    required: true
+                },
+                oriTraslado: {
+                  required: true
+                },
+                desTraslado: {
+                  required: true
+                },
+                tipoTraslado: {
+                    required: true
+                },
+                idPrioridad: {
+                    required: true
+                },
+                nomPersonal: {
+                    required: true
+                },
+                realizada: {
+                    required: true
+                }
+              },
+              messages: {
+                id: {
+                    required: "Porfavor, ingrese un id"
+                },
+                oriTraslado: {
+                  required: "Porfavor, ingrese un origen"
+                },
+                desTraslado: {
+                  required: "Porfavor, ingrese un destino"
+                },
+                tipoTraslado: {
+                  required: "Porfavor, ingrese un tipo de traslado"
+                },
+                idPrioridad: {
+                  required: "Porfavor, ingrese una prioridad"
+                },
+                nomPersonal: {
+                  required: "Porfavor, ingrese su nombre"
+                },
+                realizada: {
+                    required: "Porfavor, ingrese un estado válido"
+                }
+              }
+            })
+            $('#btnModal').on('click', function() {
+                if($("#modificarTraslado").valid()){
+                    var btn = document.getElementById("btnModal");
+                    btn.setAttribute("data-bs-target","#modalModificar");
+                }
+            });
+          });
+    </script>
 </head>
 
 <body>
@@ -89,7 +149,7 @@ if (isset($_SESSION["tipo"])) {
             </nav>
             <br>
             <div class="container-fluid">
-                <form class="form-inline" method="POST">
+                <form id="modificarTraslado" class="form-inline" method="POST">
                     <div class="form row">
                         <div class="col">
                             <label class="my-1 mr-2">ID de Traslado: </label>
@@ -197,7 +257,7 @@ if (isset($_SESSION["tipo"])) {
                     <br>
 
 
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalModificar">Modificar</button>
+                    <button id="btnModal" type="button" class="btn btn-primary" data-bs-toggle="modal">Modificar</button>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
                     
                     <!-- The Modal -->
@@ -253,10 +313,8 @@ if (isset($_SESSION["tipo"])) {
             </div>
             <br>
             </div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-            <script src="../js/app.js"></script>
 </body>
 
 </html>

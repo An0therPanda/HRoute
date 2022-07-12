@@ -20,7 +20,31 @@ if (isset($_SESSION["tipo"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/estilos/estilos.css">
     <title>HRoute</title>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script>
+          $(document).ready(function() {
+            $("#crearCamillero").validate({
+              rules: {
+                nomUsuario: {
+                  required: true
+                },
+                nomCamillero: {
+                  required: true
+                }
+              },
+              messages: {
+                nomUsuario: {
+                  required: "Porfavor ingrese un usuario"
+                },
+                nomCamillero: {
+                  required: "Porfavor ingrese un nombre"
+                }
+              }
+            });
+          });
+    </script>
 </head>
 
 <body>
@@ -56,15 +80,15 @@ if (isset($_SESSION["tipo"])) {
     </nav>
     <br>
     <div class="container-fluid">
-        <form class="form-inline" method="POST">
+        <form id="crearCamillero" class="form-inline" method="POST">
             <br>
             <div class="col">
                 <label class="my-1 mr-2">Nombre de Usuario: </label>
-                <input id="nomUsuario" name="nomUsuario" type="text" class="form-control" placeholder="">
+                <input id="nomUsuario" name="nomUsuario" type="text" class="form-control">
             </div>
             <div class="col">
                 <label class="my-1 mr-2">Nombre de Camillero: </label>
-                <input id="nomCamillero" name="nomCamillero" type="text" class="form-control" placeholder="">
+                <input id="nomCamillero" name="nomCamillero" type="text" class="form-control">
             </div>
             <br>
             <div class="col-12">
@@ -72,10 +96,6 @@ if (isset($_SESSION["tipo"])) {
             </div>
         </form>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="../js/app.js"></script>
 </body>
 
 </html>
