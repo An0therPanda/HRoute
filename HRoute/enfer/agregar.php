@@ -160,7 +160,7 @@ if (isset($_SESSION["tipo"])) {
                 </div>
             </div>
             <br>
-            <button id="btnModal" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModal">Agregar</button>
+            <button id="btnModal" type="button" class="btn btn-info" data-bs-toggle="modal">Agregar</button>
 
             <!-- The Modal -->
             <div class="modal fade" id="myModal">
